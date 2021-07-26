@@ -37,7 +37,7 @@ export const signup = async (req, res) => {
       return res.status(400).json({ msg: "User already exits." });
     if (password === !confirmPassword)
       return res.status(400).json({ msg: "Passwords doesn't match" });
-    const hashPassword = bcrypt.hash(password, 10);
+    const hashPassword = await bcrypt.hash(password, 10);
     const result = await User.create({
       name: `${firstName} ${lastName}`,
       email,
